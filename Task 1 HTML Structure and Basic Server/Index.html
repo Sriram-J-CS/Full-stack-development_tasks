@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Details Form</title>
+</head>
+<body style="
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    font-family:Arial;
+">
+
+    <div style="
+        background:white;
+        padding:30px;
+        width:320px;
+        text-align:center;
+        border-radius:10px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    ">
+        <h2>User Details</h2>
+
+        <form action="/submit" method="POST">
+            <input type="text" name="name" placeholder="Enter Name" required
+                style="width:90%;padding:8px;margin:8px;"><br>
+
+            <input type="number" name="age" placeholder="Enter Age" required
+                style="width:90%;padding:8px;margin:8px;"><br>
+
+            <input type="text" name="profession" placeholder="Enter Profession" required
+                style="width:90%;padding:8px;margin:8px;"><br><br>
+
+            <button type="submit"
+                style="padding:8px 20px;background:#667eea;color:white;border:none;border-radius:5px;">
+                Submit
+            </button>
+
+            <button type="reset"
+                style="padding:8px 20px;margin-left:10px;">
+                Reset
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>
