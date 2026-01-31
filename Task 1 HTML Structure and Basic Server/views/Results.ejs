@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+</head>
+<body style="
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#43cea2,#185a9d);
+    font-family:Arial;
+">
+
+    <div style="
+        background:white;
+        padding:30px;
+        width:320px;
+        text-align:center;
+        border-radius:10px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    ">
+        <h2>User Profile</h2>
+
+        <p><strong>Name:</strong> <%= name %></p>
+        <p><strong>Age:</strong> <%= age %></p>
+        <p><strong>Profession:</strong> <%= profession %></p>
+
+        <p style="color:green;">Details processed on server</p>
+    </div>
+
+</body>
+</html>
