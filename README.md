@@ -96,9 +96,8 @@ Application demonstrating basic database connectivity and data handling.
 2. Extract the ZIP file
 3. Open any task folder
 4. Open `index.html` in a web browser
+5. For the server.js files tasks go to terminal
+6. run the file in local host, which is shown in the terminal.
 
 ---
-
-## 🌍 Live Demo (GitHub Pages)
-If GitHub Pages is enabled, each task can be accessed using:
 
