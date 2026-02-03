@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>API Integration Task</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #eef2f7;
+      padding: 30px;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    .card {
+      background: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>👨‍💻 User Management (API Integration)</h2>
+
+<input id="name" placeholder="Name">
+<input id="role" placeholder="Role">
+<button onclick="addUser()">Add User</button>
+
+<div id="users"></div>
+
+<script>
+  const API_URL = "/api/users";
+
+  // FETCH & DISPLAY
+  function loadUsers() {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        const usersDiv = document.getElementById("users");
+        usersDiv.innerHTML = "";
+        data.forEach(user => {
+          usersDiv.innerHTML += `
+            <div class="card">
+              <b>${user.name}</b> - ${user.role}
+              <button onclick="deleteUser(${user.id})">Delete</button>
+            </div>
+          `;
+        });
+      });
+  }
+
+  // CREATE
+  function addUser() {
+    fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name.value,
+        role: role.value
+      })
+    }).then(() => loadUsers());
+  }
+
+  // DELETE
+  function deleteUser(id) {
+    fetch(`${API_URL}/${id}`, {
+      method: "DELETE"
+    }).then(() => loadUsers());
+  }
+
+  loadUsers();
+</script>
+
+</body>
+</html>
