@@ -1,0 +1,127 @@
+:root{
+    --bg-dark:#020617;
+    --bg-main:#0f172a;
+    --accent:#38bdf8;
+    --glass:rgba(255,255,255,0.08);
+}
+
+body{
+    margin:0;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--bg-main);
+    color:#e5e7eb;
+}
+
+/* NAVBAR */
+.navbar{
+    background:rgba(2,6,23,0.85);
+    backdrop-filter: blur(12px);
+}
+.brand{
+    font-weight:800;
+    letter-spacing:3px;
+}
+
+/* HERO */
+.hero{
+    height:100vh;
+    background:linear-gradient(135deg,#020617,#0f172a);
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+.overlay{
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at top,rgba(56,189,248,.15),transparent 60%);
+}
+.hero-content{
+    position:relative;
+}
+.hero-title{
+    font-size:clamp(2.5rem,6vw,4rem);
+    animation:slideUp 1.2s ease;
+}
+.hero-subtitle{
+    max-width:650px;
+    margin:20px auto;
+    opacity:0;
+    animation:fadeIn 2s forwards;
+    animation-delay:.7s;
+}
+.hero-actions button{
+    margin:10px;
+}
+
+/* SECTIONS */
+.section{
+    padding:90px 0;
+}
+.section-title{
+    text-align:center;
+    font-size:2.4rem;
+    margin-bottom:50px;
+}
+.dark{
+    background:var(--bg-dark);
+}
+
+/* GLASS CARDS */
+.glass-card{
+    background:var(--glass);
+    padding:35px;
+    border-radius:18px;
+    transition:.4s;
+}
+.glass-card:hover{
+    transform:translateY(-15px);
+    box-shadow:0 30px 60px rgba(0,0,0,.5);
+}
+
+/* METRICS */
+.metric{
+    font-size:2.5rem;
+    color:var(--accent);
+}
+
+/* PLATFORM */
+.platform-text{
+    font-size:1.1rem;
+}
+.platform-list{
+    list-style:none;
+    padding:0;
+}
+.platform-list li{
+    padding:6px 0;
+}
+.platform-box{
+    background:linear-gradient(135deg,var(--accent),#0ea5e9);
+    color:#000;
+    padding:40px;
+    border-radius:20px;
+    font-weight:700;
+}
+
+/* CONTACT */
+.contact-card{
+    background:var(--glass);
+    padding:35px;
+    border-radius:20px;
+}
+
+/* FOOTER */
+.footer{
+    background:#020617;
+    text-align:center;
+    padding:20px;
+}
+
+/* ANIMATIONS */
+@keyframes slideUp{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeIn{
+    to{opacity:1;}
+}
