@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Cognifyz | Complex Form Validation</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    color: #fff;
+    margin: 0;
+}
+
+nav {
+    background: rgba(0,0,0,0.4);
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 450px;
+    background: #ffffff;
+    color: #333;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #1e3c72;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #16305c;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+.success {
+    color: green;
+    text-align: center;
+}
+
+.strength {
+    height: 6px;
+    background: #ddd;
+    margin-top: 5px;
+    border-radius: 3px;
+}
+
+.strength div {
+    height: 100%;
+    width: 0;
+    border-radius: 3px;
+    transition: width 0.3s;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#register">Register</a>
+    <a href="#about">About</a>
+</nav>
+
+<div id="app"></div>
+
+<script>
+function router() {
+    const route = window.location.hash || "#register";
+
+    if (route === "#register") loadRegister();
+    if (route === "#success") loadSuccess();
+    if (route === "#about") loadAbout();
+}
+
+window.addEventListener("hashchange", router);
+window.addEventListener("load", router);
+
+function loadRegister() {
+    document.getElementById("app").innerHTML = `
+    <div class="container">
+        <h2>User Registration</h2>
+        <input type="text" id="name" placeholder="Full Name">
+        <div class="error" id="nameError"></div>
+
+        <input type="password" id="password" placeholder="Password">
+        <div class="strength"><div id="strengthBar"></div></div>
+        <div class="error" id="passError"></div>
+
+        <button onclick="validateForm()">Register</button>
+    </div>
+    `;
+
+    document.getElementById("password").addEventListener("input", checkStrength);
+}
+
+function validateForm() {
+    let name = document.getElementById("name").value.trim();
+    let password = document.getElementById("password").value;
+
+    let valid = true;
+
+    document.getElementById("nameError").innerText = "";
+    document.getElementById("passError").innerText = "";
+
+    if (name.length < 3) {
+        document.getElementById("nameError").innerText = "Name must be at least 3 characters";
+        valid = false;
+    }
+
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{8,}$/;
+
+    if (!regex.test(password)) {
+        document.getElementById("passError").innerText =
+        "Password must contain uppercase, lowercase, number & special character";
+        valid = false;
+    }
+
+    if (valid) {
+        window.location.hash = "#success";
+    }
+}
+
+function checkStrength() {
+    let pass = document.getElementById("password").value;
+    let bar = document.getElementById("strengthBar");
+    let strength = 0;
+
+    if (pass.length >= 8) strength++;
+    if (/[A-Z]/.test(pass)) strength++;
+    if (/[0-9]/.test(pass)) strength++;
+    if (/[@$!%*?&]/.test(pass)) strength++;
+
+    bar.style.width = (strength * 25) + "%";
+    bar.style.background =
+        strength <= 1 ? "red" :
+        strength == 2 ? "orange" :
+        strength == 3 ? "yellowgreen" : "green";
+}
+
+function loadSuccess() {
+    document.getElementById("app").innerHTML = `
+    <div class="container">
+        <h2>Registration Successful 🎉</h2>
+        <p class="success">Your data has been validated successfully.</p>
+        <button onclick="window.location.hash='#register'">Back</button>
+    </div>
+    `;
+}
+
+function loadAbout() {
+    document.getElementById("app").innerHTML = `
+    <div class="container">
+        <h2>About This Task</h2>
+        <p>
+        This project demonstrates complex form validation,
+        real-time DOM updates, and client-side routing using JavaScript.
+        </p>
+    </div>
+    `;
+}
+</script>
+
+</body>
+</html>
